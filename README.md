@@ -1,76 +1,101 @@
-📞 ChatGestDial Scraper
-A Python-based scraper that fetches phone numbers, emails, ratings, and addresses of businesses listed on ChatGestDial using Selenium and BeautifulSoup. This tool is ideal for digital marketers, lead generation, or local business research.
+# JustDial Scraper
 
-🚀 Features
-✅ Extracts:
+A Python tool for scraping business information from JustDial.
 
-Business Name
+## Features
 
-Phone Number
+- Extracts business names, phone numbers, ratings, and addresses
+- Handles pagination automatically
+- Implements human-like scrolling behavior to avoid detection
+- Saves data to CSV format
+- Supports graceful shutdown with Ctrl+C
+- Prevents duplicates when resuming scraping
 
-Rating
+## Requirements
 
-Address
+- Python 3.6+
+- Chrome browser installed
 
-✅ Uses Selenium for dynamic JS content
+## Installation
 
-✅ Mimics human scrolling behavior
+1. Clone this repository or download the script:
 
-✅ Graceful shutdown with Ctrl+C
+```bash
+git clone https://github.com/yourusername/justdial-scraper.git
+cd justdial-scraper
+```
 
-✅ Avoids duplicates by tracking previously scraped names
+2. Create a virtual environment (recommended):
 
-✅ Output in clean CSV format
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
 
-📦 Installation
-Make sure you have Python 3.7+ installed.
+3. Install the required dependencies:
 
-bash
-Copy
-Edit
-git clone https://github.com/your-username/chatgestdial-scraper.git
-cd chatgestdial-scraper
-pip install -r requirements.txt
-requirements.txt
-nginx
-Copy
-Edit
-selenium
-beautifulsoup4
-webdriver-manager
-🛠️ Usage
-bash
-Copy
-Edit
-python scraper.py --url "https://www.chatgestdial.com/example-category" --file "business_data.csv"
-Arguments:
-Argument	Description	Required	Default
---url	URL of the ChatGestDial page to scrape	✅	-
---file	Output CSV file name	❌	output.csv
+```bash
+pip install selenium beautifulsoup4 webdriver-manager
+```
 
-Press Ctrl+C anytime to stop the scraper and save collected data.
+## Usage
 
-💡 How It Works
-Launches a Chrome browser in the background using Selenium.
+Run the script with the following command:
 
-Scrolls the page like a human to load more results.
+```bash
+python justdial_scraper.py --url "https://www.justdial.com/search-query" --file "output.csv"
+```
 
-Locates and clicks “Show Number” buttons.
+### Parameters:
 
-Extracts visible data using BeautifulSoup.
+- `--url`: The JustDial search URL you want to scrape (required)
+- `--file`: Output filename for the CSV data (default: "output.csv")
 
-Appends new entries to a CSV file, skipping duplicates.
+### Example:
 
-📁 Output Format (CSV)
-Name	Phone	Rating	Address
-Pizza Delight	123-456-7890	4.5	Sector 10, New Delhi
-Quick Repair Hub	987-654-3210	3.8	MG Road, Bengaluru
+```bash
+python justdial_scraper.py --url "https://www.justdial.com/Mumbai/Restaurants" --file "mumbai_restaurants.csv"
+```
 
-⚠️ Disclaimer
-This project is intended for educational and ethical use only.
-Do not use this tool to violate the ChatGestDial Terms of Service.
-You are solely responsible for how you use this script.
+## How It Works
 
-🤖 Author
-Tactition
-Built with 💻, ☕, and a dash of curiosity.
+The scraper works by:
+
+1. Initializing a Chrome browser instance with Selenium
+2. Loading the specified JustDial URL
+3. Simulating human-like scrolling behavior
+4. Extracting business information using BeautifulSoup
+5. Saving data incrementally to a CSV file
+6. Continuing until manually stopped with Ctrl+C
+
+## Output
+
+The script generates a CSV file with the following columns:
+- Name: Business name
+- Phone: Phone number
+- Rating: Customer rating
+- Address: Business address
+
+## Notes
+
+- The script includes anti-detection measures but use responsibly and respect website terms of service
+- Running the script multiple times with the same output file will only append new entries (no duplicates)
+- Use a VPN if you plan to run extensive scraping sessions
+- JustDial's website structure may change over time requiring script updates
+
+## Troubleshooting
+
+If you encounter issues:
+
+1. Make sure Chrome is installed and up to date
+2. Check if your internet connection is stable
+3. If the website structure changed, the CSS selectors might need updating
+4. Ensure you have the necessary permissions to write to the output file location
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Disclaimer
+
+This tool is for educational purposes only. Use responsibly and in accordance with JustDial's terms of service. The developer is not responsible for any misuse of this tool.
